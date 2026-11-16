@@ -89,8 +89,9 @@ export function TypographyStatus() {
     <div className="typography-status" data-typography-status={t.status}>
       <p>
         Betűvastagságok: {t.status}. Csak az aktuális projektben, minden
-        deklarált fontszerepen igazolt opció választható. A meglévő értékeket
-        nem írjuk át.
+        deklarált fontszerepen igazolt súlyképviselő választható. Azonos betűkép
+        nem jelent két külön megjelenést. Lehetőség szerint a jelenlegi súly
+        marad; az ellenőrzés nem írja át az értékeket.
       </p>
       <button type="button" disabled={t.busy} onClick={t.run}>
         Tipográfia ellenőrzése
@@ -119,7 +120,7 @@ export function useWeightOptions(config: EditableTokenConfig, id: string) {
     referenceAllowed,
     verified: t.report ? availability.verified : [],
     help: t.report
-      ? `Igazolt: ${availability.verified.join(', ') || 'nincs'}. Az összeolvadó vagy nem igazolt értékek nem választhatók külön fokozatként. ${roles.join(', ')}`
+      ? `Igazolt CSS-súlyképviselők: ${availability.verified.join(', ') || 'nincs'}. Az azonos betűképet adó súlyok nem külön választható megjelenések. Ez nem külön natív fontfokozat igazolása. ${roles.join(', ')}`
       : `${t.status}: nincs aktuális fontbizonyíték. Futtasd a Tipográfia ellenőrzését. A jelenlegi érték megmarad.`,
   };
 }

@@ -1,6 +1,6 @@
 # ADR-0011 — M6 projektszintű, ellenőrzött tipográfiai képességek
 
-Dátum: 2026-11-15, Europe/Budapest. Állapot: alkalmazott döntés.
+Dátum: 2026-11-15, Europe/Budapest. Állapot: alkalmazott döntés; képviselőszabály pontosítva 2026-11-16.
 Kiindulópont: PR #7, `d39adb7`. A felhasználó végleges döntése: rendszerfontok,
 meglévő Task Manager és Hangár arculat; nincs új fontkészlet vagy automatikus javítás.
 
@@ -48,17 +48,35 @@ legalább 20 pixel, legalább 8/255 csatornaeltérés, legalább 1% tintapixel.
 Az azonos raszter negatív kontrollként mindig elutasítandó. A monospace azonos
 advance-szélessége önmagában nem elutasítási ok.
 
-Minden jelöltpár PASS/FAIL eredménye megmarad. Összeolvadásnál csökkenő numerikus
-sorrendben választunk egymástól bizonyítottan eltérő képviselőket; így az azonos
-600/700 párból 700 képviselő és 600 elutasított jelölt lesz. Ez kizárólag a
-választó működése: meglévő 600-as értéket soha nem ír át 700-ra. A szerep támogatott
-készlete a célok és szélességek, közös tokennél minden fogyasztó metszete.
+Minden jelöltpár PASS/FAIL eredménye megmarad, a nem választható jelölteké is.
+A 2026-11-16-án elfogadott pontosítás szerint minden tényleges célon és szélességen
+az ott aktuális, tokenfeloldással kapott súlyt vizsgáljuk első képviselőként,
+**kizárólag ha a profil deklarált jelöltje**. Utána a többi jelölt csökkenő
+numerikus sorrendje következik, ismétlés nélkül. Minden képviselőnek helyes
+computed kötéssel és betöltött fonttal kell rendelkeznie; minden további
+képviselő minden előzőtől az eredeti pixelküszöbbel igazoltan különbözzön.
+A baseline-/jelöltkötési hibák ezt az elsőbbséget is érvénytelenítik.
 
-A jelenlegi érték nem igazolt képviselőként FAIL és jóváhagyási blocker marad.
-Ez konzervatív határ: a megőrzött Task Manager 600-as utility/action szerepei
-mellett az M6 továbbra blokkolt lehet. Nem minősítjük pusztán a detektálás
-sikerét az alkalmazás tipográfiai megfelelőségének. A Hangár 400/700 mérése ettől
-függetlenül igazolható. Nincs platformnév alapján kiosztott felmentés.
+Az **igazolt CSS-súlyképviselő** egy választható, ténylegesen renderelt megjelenés
+CSS-értéke az adott fontszerepben és mérési környezetben. Nem állít külön natív
+fontface-t, Semibold metszetet vagy platformfüggetlen betűképet minden számhoz.
+Ha a jelenlegi 600 és a jelölt 700 azonos raszterű, a 600 maradhat képviselő,
+a 700 külön opcióként elutasított; a 600/700 pár eredménye továbbra **FAIL**.
+Ha valóban eltérnek, mindkettő igazolható. A 400/600/700 számok önmagukban nem
+jelentenek három megjelenést. Nincs OS-név szerinti kivétel vagy automatikus edit.
+
+A szerep támogatott készlete továbbra a célok és szélességek, közös tokennél
+minden fogyasztó metszete. Eltérő reszponzív aktuális aliasok sem kaphatnak
+kölcsönös felmentést: amely aktuális érték ebből a metszetből kiesik, FAIL és
+Approval-blocker marad. Nem deklarált aktuális érték (például 500) nem léphet be
+az elsőbbség révén. Hibás/hiányos mérés, elavult bizonyíték és listán kívüli
+megőrzött Draft továbbra nem igazolható. Az eredeti Linux/Windows FAIL-méréseket
+nem írjuk át az új összesítési szabály eredményére.
+
+A Task Manager jelenlegi 600-as utility/action értékei akkor igazolhatók, ha
+minden eredeti mérés, kötés és metszet megfelel ennek a szabálynak. A Hangár
+400/700 profilja és mindkét projekt arculata változatlan. A döntés nem jelent
+M6 release-jóváhagyást; friss Linux/Windows és teljes Approval-bizonyíték kell.
 
 ## Lab és bizonyítékfrissesség
 
@@ -79,6 +97,11 @@ API-val vagy régi Draftból bekerülő nem igazolt érték sem mehet át az App
 A profil, projektforrás/CSS, tokenállapot, engine/lockfile és környezet a meglévő
 lenyomatokhoz kötött. A rendszerfont-bizonyíték ezen felül a Lab munkamenetéhez
 kötött: restart után új mérés kell, miközben a tartós Draft/history sértetlen marad.
+A STALE továbbra kontextushoz kötött: ha az Undo pontosan a korábban mért Draftot,
+forrást és engine-t állítja vissza ugyanabban a fontmunkamenetben, az eredeti QA
+újra használható; nem keletkezik új mérési bizonyíték. Eltérő kontextusnál vagy
+restart után ez nem ad felmentést. Ez a [Blueprint §6](../../WDF_IMPLEMENTATION_BLUEPRINT.md) szerinti, meglévő
+kontextushoz kötött Change Manager viselkedése.
 Fonttelepítés vagy operációsrendszer-fontfrissítés után a Labot újra kell indítani;
 a WDF nem állít teljes operációsrendszer-fontfigyelőt. A tényleges fontface-ek és
 PNG-k a mérés környezetének bizonyítékai, nem platformfüggetlen pixelazonossági ígéret.
@@ -111,8 +134,11 @@ browser zoom külön bizonyíték marad; CSS-fontnagyítás nem helyettesíti.
 A történeti hibák és az új összes jelöltpár megőrzendő. Sikeres mérés mellett
 valódi választó-, stale/restart-, megőrzöttérték-, referencia-, hiányosintegráció-
 és Approval-blokkolási teszt szükséges. A Task Manager pozitív tranzakciós
-regressziója kizárólag explicit tesztfelhasználói szerkesztést alkalmazhat saját
-elkülönített Draftban; ez nem állíthatja az eredeti 600-as alapállapot PASS-át.
+regressziója az eredeti 600-as súlyt is megtartó, saját elkülönített Drafton
+bizonyítsa a friss, teljes Approval QA-t, külön megerősítést, tranzakcióhibánál
+rollbacket és siker esetén a koherens token/CSS/TS Baseline-t. A célzott QA,
+nem igazolt érték, hibás run/context és hiányzó megerősítés továbbra blokkoljon.
+A korábbi FAIL és az új környezetben mért eredmény külön bizonyíték marad.
 
 Rollback: a képességkezelési commit revertje elkülöníthető; a `d39adb7` eredeti
 R05 FAIL-ját és korlátait ettől változatlanul fenn kell tartani. Régi Lab és új

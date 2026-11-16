@@ -1,7 +1,7 @@
 {
   "version": "0.1.0-rc.1",
-  "scope": "Clean public snapshot; fresh execution required",
-  "knownBlocker": "R05 Task Manager 600 weight conflict remains; implementation and all candidate-pair checks unchanged. NOT_RUN here does not resolve the inherited release blocker.",
+  "scope": "Local R05 finalization review; full fresh Linux/Windows M6 matrix not completed",
+  "knownBlocker": "Fresh native Windows R05, full Linux/Windows M6 gate and outstanding manual requirements NOT_RUN; original public CI FAIL retained separately.",
   "rows": [
     {
       "id": "T01",
@@ -518,7 +518,7 @@
       "method": "Valódi alkalmazásszerepek és Lab-tokenmódosítás",
       "expected": "Helyes computed family/size/weight és megkülönböztethető deklarált opciók",
       "status": "NOT_RUN",
-      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "actual": "Final local Linux R05 PASS, all 205 candidate pairs retained (55 collapsed FAIL); fresh native Windows and full release matrix NOT_RUN. See M6-R05-FINALIZATION.md.",
       "procedure": [
         {
           "output": "M6-TYPOGRAPHY-m6-browser.json",
@@ -529,9 +529,17 @@
           "testPattern": "M6-R05 negative"
         }
       ],
-      "evidence": [],
+      "evidence": [
+        "docs/reports/M6-R05-FINALIZATION.md",
+        "docs/reports/M6-R05-HISTORY.md"
+      ],
       "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md",
-      "inheritedBlocker": "Task Manager existing 600 utility/action conflicts remain as documented in the private archive; unchanged tests still measure every original candidate pair. No new PASS is asserted."
+      "inheritedBlocker": "A korábbi nyilvános CI (43825980171, 99c649ae5a78bfea0ddb7646247870d3d97b38db) R05 FAIL: Linuxon Task Manager utility/action, Windowson utility 600. Az elfogadott, aktuális deklarált CSS-súlyt előnyben részesítő szabály új, commit előtti helyi Linux-ellenőrzése PASS; mind a 205 pár megmaradt, köztük 55 összeolvadó pár továbbra FAIL. Ez nem minősíti át a történeti CI-t. A helyi átadáskor a friss natív Windows és a teljes Linux/Windows M6-kapu NOT_RUN volt; ezekhez a PR saját CI-bizonyítéka szükséges. A fennmaradó kézi elfogadási feltételek is külön teljesítendők.",
+      "localPlatformResults": {
+        "linux": "PASS",
+        "windows": "NOT_RUN",
+        "source": "Pre-commit local review snapshot on fix/r05-current-representative; runtime/test SHA-256 in handoff, not a new PASS for the unchanged base commit."
+      }
     },
     {
       "id": "R06",

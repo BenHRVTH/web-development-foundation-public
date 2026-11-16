@@ -165,7 +165,7 @@ export function TokenField({
               >
                 {w} ·{' '}
                 {weights.verified.includes(w)
-                  ? 'igazolt'
+                  ? 'igazolt képviselő'
                   : weights.status === 'FAIL' || weights.status === 'PASS'
                     ? 'nem igazolt / összeolvadó'
                     : weights.status}

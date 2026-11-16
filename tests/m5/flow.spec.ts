@@ -292,14 +292,10 @@ test('T14/T15: real Approval QA, explicit modal, failed transaction rollback and
       source = await readFile(join(lab.root, 'wdf/tokens.json'), 'utf8');
     await field(page, 'primitive.color.accent').fill('#126174');
     await saved(page);
-    // Explicit test-user Draft edit; the production 600 baseline remains blocked by R05.
-    await command(page, {
-      type: 'edit',
-      patch: {
-        scope: { kind: 'global' },
-        changes: { 'primitive.weight.medium': 700 },
-      },
-    });
+    // Approval must keep the accepted current CSS representative, without a 600→700 repair.
+    expect(
+      (await view(page)).state.draft.tokens['primitive.weight.medium']?.value,
+    ).toBe(600);
     await page.reload();
     await expect(page.locator('.save-status')).toContainText(
       'Working Draft mentve',
@@ -397,6 +393,13 @@ test('T14/T15: real Approval QA, explicit modal, failed transaction rollback and
     await saved(page);
     const approved = await view(page);
     expect(approved.state.baseline?.config).toEqual(approved.state.draft);
+    expect(approved.state.draft.tokens['primitive.weight.medium']?.value).toBe(
+      600,
+    );
+    expect(
+      JSON.parse(await readFile(join(lab.root, 'wdf/tokens.json'), 'utf8'))
+        .tokens['primitive.weight.medium'].value,
+    ).toBe(600);
     expect(approved.state.initial).toEqual(initial.state.initial);
     expect(approved.state.baseline?.approval.run.id).toBe(qa.state.qa?.id);
     const { generateTokens } = await import('@wdf/core/generation');
@@ -449,13 +452,9 @@ test('T16/C08/C09: real source HMR preserves Draft and makes QA/reference stale;
         changes: { 'component.button.radius': 24 },
       },
     });
-    await command(page, {
-      type: 'edit',
-      patch: {
-        scope: { kind: 'global' },
-        changes: { 'primitive.weight.medium': 700 },
-      },
-    });
+    expect(
+      (await view(page)).state.draft.tokens['primitive.weight.medium']?.value,
+    ).toBe(600);
     await page.reload();
     await review(page);
     await page

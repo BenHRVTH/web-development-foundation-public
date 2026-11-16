@@ -1,3 +1,7 @@
+> Aktuális helyi R05-javítás és még hiányzó ellenőrzések:
+> [M6-R05-FINALIZATION](M6-R05-FINALIZATION.md). Az alábbi történeti eredmények
+> változatlanok; nem az új ág teszteredményei.
+
 > TÖRTÉNETI DOKUMENTUM — az alábbi eredmények a privát fejlesztési archívumhoz tartoznak. A nyers bizonyítékok nem kerültek át; ez nem a tiszta export vagy az új repository CI-teljesítésének igazolása. Aktuális határok: [nyilvános előkészítés](../PUBLICATION.md).
 
 # M6 átadás — integrációs QA és release candidate

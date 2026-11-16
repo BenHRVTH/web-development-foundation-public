@@ -106,3 +106,8 @@ billentyűzetes működése és a label/help kapcsolata megmarad. Az ellenőrzé
 módosítja a Draftot; egy kiválasztott súly csak kifejezett editként, Undo/Redo-val
 változtatja. Jóváhagyás kizárólag a friss, teljes hétcheckes Approval QA után.
 Szabály: [ADR-0011](../../docs/adr/0011-m6-typography-capabilities.md).
+
+A jelenlegi, deklarált súly kap elsőbbséget a képviselőválasztásban. A Lab azonos
+betűképhez nem kínál két külön igazolt megjelenést, és nem állít minden CSS-számhoz
+külön natív fontfokozatot. Az elsőbbség nem felmentés: hibás kötés, hiányzó mérés,
+listán kívüli aktuális érték vagy metszetből kieső reszponzív érték továbbra blokkol.

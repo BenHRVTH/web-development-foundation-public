@@ -428,9 +428,16 @@ export class TypographyProbe {
                 evidence: [a.path, b.path],
               });
             }
-          // Descending representatives: a collapsed 600 is never advertised separately from 700.
+          // Prefer the current declared CSS representative; collapsed aliases stay rejected.
+          const order = [
+            expected.weight,
+            ...[...role.weights].sort((a, b) => b - a),
+          ].filter(
+            (weight, index, all) =>
+              role.weights.includes(weight) && all.indexOf(weight) === index,
+          );
           const verified: number[] = [];
-          for (const weight of [...role.weights].sort((a, b) => b - a)) {
+          for (const weight of order) {
             const shot = shots.find((s) => s.weight === weight)!;
             if (
               shot.actual.weight === weight &&
