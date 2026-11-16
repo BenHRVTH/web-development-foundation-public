@@ -1,0 +1,18 @@
+{
+  "name": "@wdf/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WDF M1 Project Contract and design token engine",
+  "dependencies": {
+    "zod": "4.6.7",
+    "@wdf/foundation": "0.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/contracts/resources.ts",
+    "./generation": "./src/generation/index.ts",
+    "./preview": "./src/preview/index.ts",
+    "./change": "./src/change/index.ts"
+  }
+}

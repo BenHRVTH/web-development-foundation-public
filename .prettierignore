@@ -1,0 +1,19 @@
+node_modules/
+.cache/
+.wdf-lab/
+dist/
+coverage/
+test-results/
+playwright-report/
+package-lock.json
+# The four authoritative specifications must remain byte-for-byte unchanged.
+AGENTS.md
+WDF_IMPLEMENTATION_BLUEPRINT.md
+WDF_TEST_PLAN.md
+CODEX_START_PROMPT.md
+
+artifacts/
+
+# Verbatim third-party legal texts.
+LICENSE
+LICENSES/

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "roles": [
+    {
+      "id": "body",
+      "familyToken": "semantic.font.body",
+      "sizeToken": "primitive.size.body",
+      "weightToken": "primitive.weight.regular",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".page-intro"
+        }
+      ]
+    },
+    {
+      "id": "display",
+      "familyToken": "semantic.font.display",
+      "sizeToken": "semantic.size.heading",
+      "weightToken": "primitive.weight.bold",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": "h1"
+        }
+      ]
+    },
+    {
+      "id": "subheading",
+      "familyToken": "semantic.font.body",
+      "sizeToken": "primitive.size.task",
+      "weightToken": "primitive.weight.bold",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".progress-panel h2"
+        }
+      ]
+    },
+    {
+      "id": "task-title",
+      "familyToken": "semantic.font.body",
+      "sizeToken": "primitive.size.task",
+      "weightToken": "primitive.weight.bold",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".task-card h2 .task-card__link > span"
+        },
+        {
+          "workspace": "studio",
+          "component": "task-card",
+          "fixture": "comfortable",
+          "selector": ".task-card h2 .task-card__link > span"
+        }
+      ]
+    },
+    {
+      "id": "utility",
+      "familyToken": "semantic.font.utility",
+      "sizeToken": "primitive.size.caption",
+      "weightToken": "primitive.weight.medium",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".eyebrow"
+        }
+      ]
+    },
+    {
+      "id": "identifier",
+      "familyToken": "semantic.font.utility",
+      "sizeToken": "primitive.size.caption",
+      "weightToken": "primitive.weight.regular",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".task-id"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "familyToken": "semantic.font.body",
+      "sizeToken": "primitive.size.subheading",
+      "weightToken": "primitive.weight.bold",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".brand > span:last-child"
+        }
+      ]
+    },
+    {
+      "id": "caption",
+      "familyToken": "semantic.font.body",
+      "sizeToken": "primitive.size.caption",
+      "weightToken": "primitive.weight.regular",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".brand__subtitle"
+        }
+      ]
+    },
+    {
+      "id": "action",
+      "familyToken": "semantic.font.body",
+      "sizeToken": "primitive.size.small",
+      "weightToken": "primitive.weight.medium",
+      "weights": [400, 600, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".page-heading .button--primary"
+        },
+        {
+          "workspace": "studio",
+          "component": "button",
+          "fixture": "primary",
+          "selector": ".button--primary"
+        }
+      ]
+    }
+  ]
+}

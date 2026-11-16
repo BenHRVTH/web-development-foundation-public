@@ -1,0 +1,18 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["apps/task-manager/src"],
+  "locale": "hu-HU",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": [
+    "Select/Listbox",
+    "Form",
+    "Scrollbar",
+    "Toast",
+    "CRUD"
+  ],
+  "ownership": { "Select/Listbox": "native" },
+  "evidence": {
+    "crudFullFlow": "tests/browser/m2-flows.spec.ts",
+    "failurePaths": "tests/browser/m2-flows.spec.ts"
+  }
+}

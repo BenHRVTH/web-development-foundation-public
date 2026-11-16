@@ -1,0 +1,62 @@
+[
+  {
+    "file": "docs/reports/evidence/dev-320.png",
+    "sha256": "16a6914abb518fd93db0923816f6f78e6fa2d87abdf7257d6c593d6a1b85e714",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/dev-390.png",
+    "sha256": "5ff8b00ee764aa564f6437d6ee417d5441c471a0aa9eb9fc46adb8231d21dfbd",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/dev-768.png",
+    "sha256": "af5a88a57f54bcb7a0bc9f39d80f408a1c0ce0deca698f0f799887a9975b93a8",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/dev-1024.png",
+    "sha256": "cd3b75ff532d0aec80036ce44833a0c3caf3ba7b6d4a5dcb64fdef2bd49ff224",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/dev-1440.png",
+    "sha256": "c9710454056075338bfcf8fae93a9b3e1ae63f3fd70a69a2bc7473629823d51b",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/production-320.png",
+    "sha256": "16a6914abb518fd93db0923816f6f78e6fa2d87abdf7257d6c593d6a1b85e714",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/production-390.png",
+    "sha256": "5ff8b00ee764aa564f6437d6ee417d5441c471a0aa9eb9fc46adb8231d21dfbd",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/production-768.png",
+    "sha256": "af5a88a57f54bcb7a0bc9f39d80f408a1c0ce0deca698f0f799887a9975b93a8",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/production-1024.png",
+    "sha256": "cd3b75ff532d0aec80036ce44833a0c3caf3ba7b6d4a5dcb64fdef2bd49ff224",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  },
+  {
+    "file": "docs/reports/evidence/production-1440.png",
+    "sha256": "c9710454056075338bfcf8fae93a9b3e1ae63f3fd70a69a2bc7473629823d51b",
+    "purpose": "Optional historical M0 same-environment comparator input, not an M6/R01 PASS baseline",
+    "review": "All five unique images manually viewed, development/production pairs byte-identical; earlier secret/OCR audit clear"
+  }
+]

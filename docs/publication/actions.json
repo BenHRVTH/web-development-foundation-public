@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "repository": "actions/setup-node",
+      "sha": "49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "upstreamRef": "v4",
+      "checkedAt": "2026-11-16",
+      "license": "MIT",
+      "licenseFile": "LICENSES/actions/setup-node/49933ea5288caeca8642d1e84afbd3f7d6820020/LICENSE",
+      "licenseSha256": "7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32",
+      "inputs": [
+        "always-auth",
+        "architecture",
+        "cache",
+        "cache-dependency-path",
+        "check-latest",
+        "mirror",
+        "mirror-token",
+        "node-version",
+        "node-version-file",
+        "registry-url",
+        "scope",
+        "token"
+      ]
+    },
+    {
+      "repository": "actions/checkout",
+      "sha": "11d5960a326750d5838078e36cf38b85af677262",
+      "upstreamRef": "v4",
+      "checkedAt": "2026-11-16",
+      "license": "MIT",
+      "licenseFile": "LICENSES/actions/checkout/11d5960a326750d5838078e36cf38b85af677262/LICENSE",
+      "licenseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5",
+      "inputs": [
+        "allow-unsafe-pr-checkout",
+        "clean",
+        "fetch-depth",
+        "fetch-tags",
+        "filter",
+        "github-server-url",
+        "lfs",
+        "path",
+        "persist-credentials",
+        "ref",
+        "repository",
+        "set-safe-directory",
+        "show-progress",
+        "sparse-checkout",
+        "sparse-checkout-cone-mode",
+        "ssh-key",
+        "ssh-known-hosts",
+        "ssh-strict",
+        "ssh-user",
+        "submodules",
+        "token"
+      ]
+    },
+    {
+      "repository": "actions/upload-artifact",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "upstreamRef": "v4",
+      "checkedAt": "2026-11-16",
+      "license": "MIT",
+      "licenseFile": "LICENSES/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/LICENSE",
+      "licenseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5",
+      "inputs": [
+        "compression-level",
+        "if-no-files-found",
+        "include-hidden-files",
+        "name",
+        "overwrite",
+        "path",
+        "retention-days"
+      ]
+    }
+  ],
+  "validation": "YAML syntax, pinned upstream inputs and local security assertions passed; GitHub execution/settings NOT_RUN"
+}

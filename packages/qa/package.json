@@ -1,0 +1,17 @@
+{
+  "name": "@wdf/qa",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Development-only WDF live/targeted/approval browser QA",
+  "exports": {
+    "./browser": "./src/browser.ts"
+  },
+  "dependencies": {
+    "@wdf/core": "0.0.0",
+    "@wdf/adapter-react": "0.0.0",
+    "@playwright/test": "1.65.1",
+    "@axe-core/playwright": "4.14.0",
+    "pngjs": "7.0.0"
+  }
+}

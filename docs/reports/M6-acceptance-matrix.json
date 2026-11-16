@@ -1,0 +1,932 @@
+{
+  "version": "0.1.0-rc.1",
+  "scope": "Clean public snapshot; fresh execution required",
+  "knownBlocker": "R05 Task Manager 600 weight conflict remains; implementation and all candidate-pair checks unchanged. NOT_RUN here does not resolve the inherited release blocker.",
+  "rows": [
+    {
+      "id": "T01",
+      "method": "Projektből indított CLI és bootstrap",
+      "expected": "Saját projekt töltődik be",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m3-browser.json",
+          "testPattern": "M3-B01"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T02",
+      "method": "Első indítás és mentett Initial ellenőrzése",
+      "expected": "Automatikus, nem jóváhagyott, változatlan referencia",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T02/T04/T05/T09/T13"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T03",
+      "method": "Globális accent → tényleges app CSS",
+      "expected": "Megfelelő UI-előfordulások frissülnek",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m3-browser.json",
+          "testPattern": "M3-B02"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T04",
+      "method": "Teljes spacing preset",
+      "expected": "Minden deklarált érintett hely cserélődik",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T02/T04/T05/T09/T13"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T05",
+      "method": "Preset egyetlen Undo",
+      "expected": "Teljes logikai művelet visszavonható",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T02/T04/T05/T09/T13"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T06",
+      "method": "Family/variant edit mindkét workspace-ben",
+      "expected": "Csak a megfelelő előfordulások változnak",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m4-browser.json",
+          "testPattern": "M4-T06/C05"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T07",
+      "method": "Registry/Studio valódi komponens és fixture",
+      "expected": "Task Manager 7/27; fogyasztó 4/15",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m4-browser.json",
+          "testPattern": "M4-T07/R02/R03/R07/R08"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T08",
+      "method": "Öt valódi iframe viewport",
+      "expected": "320/390/768/1024/1440 CSS px, skálázás nélkül",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m3-browser.json",
+          "testPattern": "M3-V01"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T09",
+      "method": "Initial/Baseline A/B",
+      "expected": "Ugyanaz a React-forrás, külön design, változatlan Draft",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T02/T04/T05/T09/T13"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T10",
+      "method": "19 px Foundation-hibainjektálás",
+      "expected": "Pontos blocker és nincs automatikus javítás",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T10/T11/T12/C07"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T11",
+      "method": "Egy Audit-javítás elfogadása",
+      "expected": "Csak a kiválasztott javítás kerül Draftba",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T10/T11/T12/C07"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T12",
+      "method": "Audit-javaslat elutasítása",
+      "expected": "Draft változatlan; blocker nem tűnik el",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T10/T11/T12/C07"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T13",
+      "method": "Lab valódi leállítás/újraindítás",
+      "expected": "Draft és history visszatöltődik",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T02/T04/T05/T09/T13"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T14",
+      "method": "Valódi Approval QA + külön modal",
+      "expected": "Koherens token/CSS/TS/Approved Baseline",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T14/T15"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T15",
+      "method": "Véglegesítési hiba és journal",
+      "expected": "Korábbi elfogadott állapot sértetlen",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T14/T15"
+        },
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "Journal recovery after interrupted approval"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "T16",
+      "method": "Külső React/CSS/Contract drift",
+      "expected": "QA érvénytelenítés, nincs néma Draft-felülírás",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T16/C08/C09"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C01",
+      "method": "Inkompatibilis Contract valódi CLI",
+      "expected": "Szerkesztés blokkol, pontos hiba",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M3-S04"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C02",
+      "method": "Nem létező tokenreferencia",
+      "expected": "Pontos függőségi diagnosztika",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M1-T03"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C03",
+      "method": "Körkörös tokenfüggőség",
+      "expected": "Ciklus és útvonala felismerve",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M1-T04"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C04",
+      "method": "Hibás props/validator/render",
+      "expected": "Fixture-lokális hiba, egészséges komponensek használhatók",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m4-browser.json",
+          "testPattern": "M4-C04"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C05",
+      "method": "Scope-határok",
+      "expected": "Global/family/variant nem keveredik",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m4-browser.json",
+          "testPattern": "M4-T06/C05"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C06",
+      "method": "Explicit reszponzív értékhelyek",
+      "expected": "Deklarálatlan eltérés elutasítva",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M1-T09|M1-T10|M1-T11"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C07",
+      "method": "Audit-fix Undo",
+      "expected": "Elfogadott javítás egy Undo-egység",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T10/T11/T12/C07"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C08",
+      "method": "Elavult/hiányos/hibás QA",
+      "expected": "Nem használható véglegesítéshez",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T16/C08/C09"
+        },
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "Missing mandatory check"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C09",
+      "method": "Külső forrásmódosítás",
+      "expected": "Draft megmarad, konfliktus látható",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T16/C08/C09"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "C10",
+      "method": "Önálló production build",
+      "expected": "WDF/Registry runtime nem kerül a bundle-be",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R01",
+      "method": "Szigorú pixel/DOM összevetés",
+      "expected": "25 pár, 0 geometriai eltérés; <=8 pixel és <=1/255, maszk nélkül",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m3-browser.json",
+          "testPattern": "R01: exact rendered"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R02",
+      "method": "Valódi kártyainset",
+      "expected": "Compact 16, Comfortable 24, Spacious 32 px",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-R02/R03"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R03",
+      "method": "Mobilos Spacious",
+      "expected": "320/390-en is 32 px, implicit paddingcsere nélkül",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-R02/R03.*spacious"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R04",
+      "method": "Ikon/szöveg DOMRect + vizuális review",
+      "expected": "Igazítás több hosszon/viewporton megfelelő",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-R04"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R05",
+      "method": "Valódi alkalmazásszerepek és Lab-tokenmódosítás",
+      "expected": "Helyes computed family/size/weight és megkülönböztethető deklarált opciók",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "M6-TYPOGRAPHY-m6-browser.json",
+          "testPattern": "M6-R05: actual font capabilities"
+        },
+        {
+          "output": "M6-TYPOGRAPHY-m6-browser.json",
+          "testPattern": "M6-R05 negative"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md",
+      "inheritedBlocker": "Task Manager existing 600 utility/action conflicts remain as documented in the private archive; unchanged tests still measure every original candidate pair. No new PASS is asserted."
+    },
+    {
+      "id": "R06",
+      "method": "Szemantikus színek és scope",
+      "expected": "Accent nem írja felül a hiba/siker szerepet",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m3-browser.json",
+          "testPattern": "M3-B02"
+        },
+        {
+          "output": "test-results/m4-browser.json",
+          "testPattern": "M4-T06/C05"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R07",
+      "method": "DOM ID-k minden szélességen",
+      "expected": "Nincs hibás ID-duplikáció",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-R320|M2-R390|M2-R768|M2-R1024|M2-R1440"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R08",
+      "method": "Overflow/scroll/reflow",
+      "expected": "Nincs váratlan vízszintes overflow vagy levágott művelet",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-R320|M2-R390|M2-R768|M2-R1024|M2-R1440"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five|M6-R10"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R09",
+      "method": "Valódi fixture/interakció",
+      "expected": "Disabled/busy/error/hover/focus/modal megfelelő",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-I01|M2-I02|M2-I03|M2-R09"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "R10",
+      "method": "axe, valódi billentyűzet/fókusz, CSS-reflow és a natív 200% külön vizsgálata",
+      "expected": "Releváns ellenőrzések teljesülnek; nem kizárólag scanner",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "Review responsive/keyboard/a11y"
+        },
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-R10|M6 consumer: five"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "Unchanged WDF_TEST_PLAN.md manual/visual/accessibility procedure; native browser zoom is not replaced by CSS scaling."
+    },
+    {
+      "id": "N01",
+      "method": "19 px spacing",
+      "expected": "Foundation-hiba, nem alkalmazható",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M1-T05"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N02",
+      "method": "Hiányzó tokenref",
+      "expected": "Elutasítva",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M1-T03"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N03",
+      "method": "Referencia-ciklus",
+      "expected": "Elutasítva",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M1-T04"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N04",
+      "method": "Hibás komponensregisztráció",
+      "expected": "Lokalizált hiba",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M2-C03|M2-C04"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N05",
+      "method": "Duplikált DOM ID",
+      "expected": "Böngészőteszt észleli",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-N01"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N06",
+      "method": "Hibás kontraszt",
+      "expected": "axe észleli",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-N01"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N07",
+      "method": "Mobiloverflow",
+      "expected": "Geometriai check észleli",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/browser.json",
+          "testPattern": "M2-N01"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N08",
+      "method": "Elavult QA",
+      "expected": "Jóváhagyás elutasítva",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T16/C08/C09"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N09",
+      "method": "Hibás véglegesítés",
+      "expected": "Rollback, előző Baseline megmarad",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T14/T15"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N10",
+      "method": "Váratlan külső kódváltozás",
+      "expected": "Draft nem íródik felül",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T16/C08/C09"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N11",
+      "method": "Hibás/foundation/scope/protokoll/HTTP művelet",
+      "expected": "Pontos jogosultsági határ",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m3-browser.json",
+          "testPattern": "M3-P03|M3-P04"
+        },
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "Local HTTP:"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N12",
+      "method": "Hiányzó vagy hibás új projekt-QA",
+      "expected": "Nincs sikeres üres mátrix",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/unit.json",
+          "testPattern": "M6 missing or malformed"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "PKG01",
+      "method": "ESM exportok, types és deep import",
+      "expected": "Telepített publikus API működik; privát import tiltott",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "PKG02",
+      "method": "npm pack és tiszta install/ci",
+      "expected": "Öt valós artifact, sem symlink, sem workspace alias",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "PKG03",
+      "method": "Megismételt build/pack",
+      "expected": "Byte-azonos SHA-256 inventory",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "E2E01",
+      "method": "Draft → Audit → tényleges Approval → külön jóváhagyás",
+      "expected": "Valós token/CSS/TS/Baseline commit",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "test-results/m6-browser.json",
+          "testPattern": "M6-PACK/E2E"
+        },
+        {
+          "output": "test-results/m5-browser.json",
+          "testPattern": "T14/T15"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    },
+    {
+      "id": "N13",
+      "method": "Single read polling, transient read recovery, lost response after real Draft write",
+      "expected": "No overlapping GETs; fresh read restores UI; uncertain POST not retried and stays blocked until explicit readback",
+      "status": "NOT_RUN",
+      "actual": "A tiszta exporton nem futtatott; korábbi PASS nem átvett bizonyíték.",
+      "procedure": [
+        {
+          "output": "M6-TYPOGRAPHY-m6-browser.json",
+          "testPattern": "M6 polling:"
+        }
+      ],
+      "evidence": [],
+      "reproduction": "npm run verify:m6; native Linux and Windows jobs separately; manual cases follow unchanged WDF_TEST_PLAN.md"
+    }
+  ],
+  "platformsAndManual": [
+    {
+      "id": "PLAT-LINUX",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    },
+    {
+      "id": "PLAT-WINDOWS",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    },
+    {
+      "id": "MANUAL-200",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    },
+    {
+      "id": "SCREEN-READER",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    },
+    {
+      "id": "FIREFOX-WEBKIT",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    },
+    {
+      "id": "MANUAL-NATIVE-200-R05",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    },
+    {
+      "id": "PLAT-UBUNTU-CI",
+      "status": "NOT_RUN",
+      "actual": "Új nyilvános CI-/kézi bizonyíték szükséges."
+    }
+  ]
+}

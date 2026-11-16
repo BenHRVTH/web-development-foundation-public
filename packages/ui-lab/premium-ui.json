@@ -1,0 +1,18 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["packages/ui-lab/src"],
+  "locale": "hu-HU",
+  "canonicalMap": "packages/ui-lab/UX-CONTRACT.md",
+  "requiredCapabilities": ["Select/Listbox", "Form", "Scrollbar", "Toast"],
+  "ownership": {
+    "Select/Listbox": "native"
+  },
+  "requiredCommands": ["m5"],
+  "commands": {
+    "m5": "npm run verify:m5"
+  },
+  "evidence": {
+    "crudFullFlow": "tests/m5/flow.spec.ts",
+    "failurePaths": "packages/ui-lab/src/change/service.test.ts"
+  }
+}

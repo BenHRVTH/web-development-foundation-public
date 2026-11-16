@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "roles": [
+    {
+      "id": "body",
+      "familyToken": "primitive.font.body",
+      "sizeToken": "primitive.size.body",
+      "weightToken": "primitive.weight.body",
+      "weights": [400, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".intro > p:last-child"
+        }
+      ]
+    },
+    {
+      "id": "display",
+      "familyToken": "primitive.font.heading",
+      "sizeToken": "primitive.size.heading",
+      "weightToken": "primitive.weight.heading",
+      "weights": [400, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": "h1"
+        }
+      ]
+    },
+    {
+      "id": "subheading",
+      "familyToken": "primitive.font.body",
+      "sizeToken": "primitive.size.subheading",
+      "weightToken": "primitive.weight.heading",
+      "weights": [400, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".session h2"
+        },
+        {
+          "workspace": "studio",
+          "component": "session-card",
+          "fixture": "comfortable",
+          "selector": ".session h2"
+        }
+      ]
+    },
+    {
+      "id": "utility",
+      "familyToken": "primitive.font.label",
+      "sizeToken": "primitive.size.label",
+      "weightToken": "primitive.weight.body",
+      "weights": [400, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".eyebrow"
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "familyToken": "primitive.font.label",
+      "sizeToken": "primitive.size.label",
+      "weightToken": "primitive.weight.heading",
+      "weights": [400, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".session-time"
+        }
+      ]
+    },
+    {
+      "id": "action",
+      "familyToken": "primitive.font.body",
+      "sizeToken": "primitive.size.body",
+      "weightToken": "primitive.weight.heading",
+      "weights": [400, 700],
+      "targets": [
+        {
+          "workspace": "website",
+          "selector": ".action > span"
+        },
+        {
+          "workspace": "studio",
+          "component": "action",
+          "fixture": "primary",
+          "selector": ".action > span"
+        }
+      ]
+    }
+  ]
+}

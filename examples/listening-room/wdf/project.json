@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "id": "hangar-listening-room",
+    "name": "Hangár · Hallgatószoba"
+  },
+  "adapter": {
+    "id": "react-vite",
+    "version": "1.0.0"
+  },
+  "designTokens": {
+    "entryPoint": "wdf/tokens.json",
+    "format": "wdf-tokens@1"
+  },
+  "componentRegistry": {
+    "availability": "configured",
+    "entryPoint": "wdf/registry.tsx"
+  },
+  "preview": {
+    "availability": "configured",
+    "entryPoint": "wdf/preview.ts",
+    "origin": "http://127.0.0.1:5176",
+    "widths": [320, 390, 768, 1024, 1440]
+  },
+  "qa": {
+    "hooks": [
+      {
+        "id": "contract",
+        "kind": "static",
+        "command": ["npm", "run", "check:generated"]
+      },
+      {
+        "id": "browser",
+        "kind": "browser",
+        "command": ["npm", "run", "qa:browser"]
+      }
+    ]
+  }
+}

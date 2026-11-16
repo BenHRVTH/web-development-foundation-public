@@ -1,0 +1,10 @@
+{
+  "name": "@wdf/foundation",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WDF M1 immutable professional rules and reference values",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

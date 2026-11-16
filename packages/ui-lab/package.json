@@ -1,0 +1,28 @@
+{
+  "name": "@wdf/ui-lab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Development-only UI Lab with persistent Change Manager and Review",
+  "exports": {
+    "./cli": "./bin/ui-lab.ts"
+  },
+  "dependencies": {
+    "@wdf/core": "0.0.0",
+    "@wdf/adapter-react": "0.0.0",
+    "@wdf/foundation": "0.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "lucide-react": "1.73.0",
+    "@wdf/qa": "0.0.0",
+    "prettier": "3.10.1",
+    "zod": "4.6.7"
+  },
+  "peerDependencies": {
+    "vite": "^8.3.8",
+    "@vitejs/plugin-react": "^6.3.0"
+  },
+  "bin": {
+    "wdf-ui-lab": "./bin/ui-lab.ts"
+  }
+}

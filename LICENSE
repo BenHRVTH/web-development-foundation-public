@@ -1,0 +1,16 @@
+Web Development Foundation (WDF)
+Copyright (c) 2026 WDF project owner. All rights reserved.
+
+The WDF-owned source code, specifications and documentation are not licensed
+for general reuse, modification or redistribution. No open-source license is
+granted. Package metadata remains UNLICENSED. Public GitHub availability does
+not by itself grant an open-source license; rights expressly provided by
+GitHub's applicable terms for viewing and forking remain unaffected.
+
+This notice applies only to WDF-owned material. Third-party components,
+licenses and notices retain their original terms. See THIRD_PARTY_NOTICES.md
+and LICENSES/third-party/. Generated application bundles must retain their
+THIRD-PARTY-LICENSES.md notice alongside the output.
+
+This preserves the existing UNLICENSED policy; changing it requires an
+explicit decision by the project owner. This notice is not an npm release.

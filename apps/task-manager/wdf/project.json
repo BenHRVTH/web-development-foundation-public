@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "id": "task-manager",
+    "name": "Lépés · Task Manager"
+  },
+  "adapter": {
+    "id": "react-vite",
+    "version": "1.0.0"
+  },
+  "designTokens": {
+    "entryPoint": "wdf/tokens.json",
+    "format": "wdf-tokens@1"
+  },
+  "componentRegistry": {
+    "availability": "configured",
+    "entryPoint": "wdf/registry.ts"
+  },
+  "preview": {
+    "availability": "configured",
+    "entryPoint": "wdf/preview.ts",
+    "origin": "http://127.0.0.1:5176",
+    "widths": [320, 390, 768, 1024, 1440]
+  },
+  "qa": {
+    "hooks": [
+      {
+        "id": "m2-contract",
+        "kind": "static",
+        "command": ["npm", "run", "test:unit"]
+      },
+      {
+        "id": "m2-browser",
+        "kind": "browser",
+        "command": ["npm", "run", "test:browser"]
+      }
+    ]
+  }
+}

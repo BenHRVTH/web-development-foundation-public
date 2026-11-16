@@ -1,0 +1,5 @@
+# Keep byte-level specification checks and release artifacts identical on Windows and Linux.
+* text=auto eol=lf
+
+# Preserve upstream legal notice bytes used by the SHA-256 inventory.
+LICENSES/** -text
