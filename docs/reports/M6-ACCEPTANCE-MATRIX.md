@@ -1,6 +1,12 @@
 # M6 elfogadási ellenőrzőlista — tiszta export
 
-Minden sor friss futtatást igényel. A korábbi eredmények a privát archívumban maradtak. **R05 ismert kiadásblokkoló marad.**
+A teljes kiadási mátrix még nem friss teljes kapueredmény. Az R05 helyi Linux-
+részvizsgálata PASS, minden eredeti pár megőrzésével; friss natív Windows és a
+teljes Linux/Windows-kapu NOT_RUN, ezért az R05 összesített sora itt NOT_RUN marad.
+[Részletes aktuális helyi átadás](M6-R05-FINALIZATION.md),
+[történeti nyilvános CI FAIL](M6-R05-HISTORY.md). Más sorok korábbi NOT_RUN
+státusza nem jelenti a külön helyi regressziók sikertelenségét vagy teljes
+kiadási megfelelőségét; ezek eredményeit az új átadás külön rögzíti.
 
 | ID    | Eljárás                                                                            | Elvárt eredmény                                                                                                   | Státusz |
 | ----- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------- |

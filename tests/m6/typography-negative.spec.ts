@@ -4,6 +4,9 @@ import { resolve, join } from 'node:path';
 import { validateTypographyProfile, resolveTokens, unwrap } from '@wdf/core';
 import { TypographyProbe } from '../../packages/qa/src/typography';
 import { isolatedLab } from '../isolated-lab';
+import { archiveTypography } from '../typography-evidence';
+import type { ChangeOperation } from '@wdf/core/change';
+import { typographyReportSchema } from '@wdf/core';
 
 test('M6-R05 negative: a hardcoded real component weight is an integration failure, not a supported fixed font', async ({
   page,
@@ -108,6 +111,127 @@ test('M6-R05 negative: a hardcoded real component weight is an integration failu
         .filter((r) => r.id !== 'action')
         .every((r) => r.errors.length === 0),
     ).toBe(true);
+    expect(await readFile(join(lab.root, 'wdf/tokens.json'), 'utf8')).toBe(
+      source,
+    );
+    // A current value outside the declared candidates must not be promoted.
+    // Use a real isolated Draft and complete Approval QA, so rejection is not
+    // explained merely by a targeted/missing QA run.
+    await page.goto(lab.url);
+    await expect(page.locator('.preview-status')).toHaveText('Élő kapcsolat', {
+      timeout: 30000,
+    });
+    const getState = () =>
+      page.evaluate(async () => {
+        const path = '/@id/__x00__virtual:wdf-project';
+        const { connection } = (await import(/* @vite-ignore */ path)).default;
+        return (
+          await fetch('/__wdf/state', {
+            headers: { 'X-WDF-Session': connection.session },
+          })
+        ).json();
+      });
+    const command = (operation: ChangeOperation) =>
+      page.evaluate(async (operation) => {
+        const path = '/@id/__x00__virtual:wdf-project';
+        const { connection } = (await import(/* @vite-ignore */ path)).default;
+        const headers = {
+          'X-WDF-Session': connection.session,
+          'Content-Type': 'application/json',
+        };
+        const view = await (await fetch('/__wdf/state', { headers })).json();
+        const response = await fetch('/__wdf/change', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            version: '1.0.0',
+            projectId: connection.projectId,
+            session: connection.session,
+            requestId: crypto.randomUUID(),
+            expectedRevision: view.state.revision,
+            operation,
+          }),
+        });
+        return { status: response.status, body: await response.json() };
+      }, operation);
+    expect(
+      (
+        await command({
+          type: 'edit',
+          patch: {
+            scope: { kind: 'global' },
+            changes: { 'primitive.weight.medium': 500 },
+          },
+        })
+      ).status,
+    ).toBe(200);
+    const beforeQa = await getState();
+    await page.getByRole('button', { name: 'Typography', exact: true }).click();
+    const medium = page.locator(
+      '[data-token="primitive.weight.medium"] .field-control select',
+    );
+    await expect(medium).toHaveValue('500');
+    await expect(medium.locator('option[value="500"]')).toBeDisabled();
+    expect((await command({ type: 'qa', level: 'approval' })).status).toBe(200);
+    await expect
+      .poll(async () => (await getState()).state.qa?.running, {
+        timeout: 660000,
+        intervals: [1000, 2000],
+      })
+      .toBe(false);
+    const afterQa = await getState();
+    expect(afterQa.state.qa.level).toBe('approval');
+    expect(afterQa.state.qa.checks).toHaveLength(7);
+    expect(afterQa.state.qa.status).toBe('FAIL');
+    expect(
+      afterQa.state.qa.checks
+        .filter((c: { ruleId: string }) => c.ruleId !== 'WDF-TYPE-001')
+        .every((c: { status: string }) => c.status === 'PASS'),
+    ).toBe(true);
+    const typeCheck = afterQa.state.qa.checks.find(
+      (c: { ruleId: string }) => c.ruleId === 'WDF-TYPE-001',
+    );
+    expect(typeCheck.status).toBe('FAIL');
+    const unsupported = typographyReportSchema.parse(
+      JSON.parse(typeCheck.evidence[0]),
+    );
+    expect(unsupported.status).toBe('FAIL');
+    for (const id of ['utility', 'action']) {
+      const role = unsupported.roles.find((r) => r.id === id)!;
+      expect(role.currentValues).toEqual([500]);
+      expect(role.verifiedWeights).not.toContain(500);
+      expect(role.errors).toContain(
+        'TYPOGRAPHY_CURRENT_WEIGHT_NOT_VERIFIED: 500',
+      );
+    }
+    await writeFile(
+      join(directory, 'unsupported-current.json'),
+      JSON.stringify(unsupported, null, 2) + '\n',
+    );
+    await archiveTypography(
+      unsupported,
+      join(directory, 'unsupported-current'),
+    );
+    await expect(page.locator('[data-typography-status]')).toHaveAttribute(
+      'data-typography-status',
+      'FAIL',
+    );
+    await expect(medium).toHaveValue('500');
+    await expect(medium.locator('option[value="500"]')).toBeDisabled();
+    await expect(medium.locator('option[value="500"]')).toContainText(
+      'megőrzött, nem igazolt',
+    );
+    expect(afterQa.state.draft).toEqual(beforeQa.state.draft);
+    const approval = await command({
+      type: 'approve',
+      confirmed: true,
+      runId: afterQa.state.qa.id,
+      configurationDigest: afterQa.context.configurationDigest,
+    });
+    expect(approval.status).toBe(409);
+    expect(approval.body.error).toContain('APPROVAL_QA_REQUIRED');
+    expect((await getState()).state.baseline).toBeNull();
+    expect((await getState()).state.draft).toEqual(beforeQa.state.draft);
     expect(await readFile(join(lab.root, 'wdf/tokens.json'), 'utf8')).toBe(
       source,
     );

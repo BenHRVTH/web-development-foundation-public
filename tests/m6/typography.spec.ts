@@ -9,6 +9,8 @@ import {
   resolveTokens,
   unwrap,
   typographyReportSchema,
+  validateTypographyProfile,
+  weightAvailability,
   type TypographyReport,
 } from '@wdf/core';
 import { isolatedLab } from '../isolated-lab';
@@ -384,6 +386,13 @@ async function inspectProject(
       ).json();
     });
   const beforeProbe = (await getState()).state.draft;
+  const profile = validateTypographyProfile(
+    await page.evaluate(async () => {
+      const modulePath = '/@id/__x00__virtual:wdf-project';
+      return (await import(/* @vite-ignore */ modulePath)).default.typography;
+    }),
+    beforeProbe,
+  );
   const weightFields = page.locator('[data-token] .field-control select');
   expect(await weightFields.count()).toBeGreaterThan(0);
   await expect(page.locator('[data-typography-status]')).toHaveAttribute(
@@ -487,9 +496,43 @@ async function inspectProject(
   }
   expect(checked.state.draft).toEqual(beforeProbe);
   expect(capabilities.roles.length).toBe(roles.length);
-  expect(capabilities.roles.every((r) => r.measurements.length >= 5)).toBe(
-    true,
-  );
+  expect(capabilities.status).toBe('PASS');
+  expect(checked.state.qa.status).toBe('PASS');
+  expect(checked.state.qa.checks).toHaveLength(7);
+  expect(
+    checked.state.qa.checks.every(
+      (c: { status: string }) => c.status === 'PASS',
+    ),
+  ).toBe(true);
+  for (const role of capabilities.roles) {
+    const declared = profile.roles.find((r) => r.id === role.id)!;
+    expect(role.measurements).toHaveLength(declared.targets.length * 5);
+    expect(role.errors).toEqual([]);
+    expect(role.verifiedWeights).toEqual(
+      expect.arrayContaining(role.currentValues),
+    );
+    for (const measurement of role.measurements) {
+      expect(measurement['baselineMatches']).toBe(true);
+      const options = measurement['options'] as { weight: number }[];
+      expect(options.map((o) => o.weight)).toEqual(declared.weights);
+      const pairs = measurement['comparisons'] as {
+        weights: number[];
+        status: string;
+      }[];
+      const expectedPairs = declared.weights.flatMap((a, i) =>
+        declared.weights.slice(i + 1).map((b) => [a, b].join(',')),
+      );
+      expect(pairs.map((pair) => pair.weights.join(','))).toEqual(
+        expectedPairs,
+      );
+      // A failed pair stays evidence, even when exactly one endpoint is a valid representative.
+      for (const pair of pairs)
+        if (pair.status === 'FAIL')
+          expect(
+            pair.weights.every((w) => role.verifiedWeights.includes(w)),
+          ).toBe(false);
+    }
+  }
   expect(
     capabilities.roles.every((r) =>
       r.measurements.every((m) => m['identicalRasterRejected']),
@@ -518,24 +561,54 @@ async function inspectProject(
     }
   await archiveTypography(capabilities, destination);
   if (id === 'task-manager') {
-    expect(
-      capabilities.roles.some((r) => r.rejectedWeights.includes(600)),
-    ).toBe(true);
-    expect(
-      report.comparisons.some(
-        (c) =>
-          (c as { weights?: number[]; status?: string }).weights?.join(',') ===
-            '600,700' && (c as { status?: string }).status === 'FAIL',
-      ),
-    ).toBe(true);
+    // Every original 400/600/700 pair remains measured; current 600 is not a forced 700 repair.
     const medium = page.locator(
       '[data-token="primitive.weight.medium"] .field-control select',
     );
+    const available = weightAvailability(
+      profile,
+      capabilities,
+      beforeProbe,
+      'primitive.weight.medium',
+    );
+    expect(available.candidates).toEqual([400, 600, 700]);
+    expect(available.verified).toContain(600);
     await expect(medium).toHaveValue('600');
-    await expect(medium.locator('option[value="600"]')).toBeDisabled();
-    await expect(medium.locator('option[value="700"]')).toBeEnabled();
-    expect(capabilities.status).toBe('FAIL');
-    const approvalAttempt = await page.evaluate(async () => {
+    await expect(medium.locator('option[value="600"]')).toBeEnabled();
+    for (const weight of available.candidates) {
+      const option = medium.locator(`option[value="${weight}"]`);
+      if (available.verified.includes(weight))
+        await expect(option).toBeEnabled();
+      else await expect(option).toBeDisabled();
+    }
+    for (const id of ['utility', 'action']) {
+      const role = capabilities.roles.find((r) => r.id === id)!;
+      expect(role.currentValues).toEqual([600]);
+      expect(role.verifiedWeights).toContain(600);
+      for (const measurement of role.measurements) {
+        const pairs = measurement['comparisons'] as {
+          weights: number[];
+          status: string;
+        }[];
+        const pair = pairs.find((p) => p.weights.join(',') === '600,700')!;
+        expect(pair).toBeTruthy();
+        if (pair.status === 'FAIL') {
+          expect(role.rejectedWeights).toContain(700);
+          expect(available.verified).not.toContain(700);
+          await expect(medium.locator('option[value="700"]')).toBeDisabled();
+        }
+      }
+    }
+    expect(checked.state.draft.tokens['primitive.weight.medium'].value).toBe(
+      600,
+    );
+  }
+  await expect(page.locator('.typography-status')).toContainText(
+    'Azonos betűkép nem jelent két külön megjelenést.',
+  );
+  // Successful typography never bypasses confirmation or the bound run/configuration.
+  for (const invalid of ['confirmation', 'run', 'configuration']) {
+    const attempt = await page.evaluate(async (invalid) => {
       const modulePath = '/@id/__x00__virtual:wdf-project';
       const { connection } = (await import(/* @vite-ignore */ modulePath))
         .default;
@@ -555,26 +628,32 @@ async function inspectProject(
           expectedRevision: view.state.revision,
           operation: {
             type: 'approve',
-            confirmed: true,
-            runId: view.state.qa.id,
-            configurationDigest: view.context.configurationDigest,
+            confirmed: invalid !== 'confirmation',
+            runId: invalid === 'run' ? 'wrong-run' : view.state.qa.id,
+            configurationDigest:
+              invalid === 'configuration'
+                ? 'wrong-digest'
+                : view.context.configurationDigest,
           },
         }),
       });
       return { status: response.status, body: await response.json() };
-    });
-    expect(approvalAttempt.status).toBe(409);
-    expect(approvalAttempt.body.error).toContain('APPROVAL_QA_REQUIRED');
-    expect(checked.state.draft.tokens['primitive.weight.medium'].value).toBe(
-      600,
-    );
-  } else
-    expect(
-      capabilities.status,
-      JSON.stringify(
-        capabilities.roles.map((r) => ({ id: r.id, errors: r.errors })),
-      ),
-    ).toBe('PASS');
+    }, invalid);
+    if (invalid === 'confirmation') {
+      // The wire schema requires literal true; this endpoint also returns 409 for that rejection.
+      expect(attempt.status).toBe(409);
+      expect(attempt.body.error).toContain('confirmed');
+    } else {
+      expect(attempt.status).toBe(409);
+      expect(attempt.body.error).toContain('APPROVAL_QA_REQUIRED');
+    }
+    expect((await getState()).state.draft).toEqual(beforeProbe);
+    expect(await readFile(join(root, 'wdf/tokens.json'), 'utf8')).toBe(source);
+  }
+  await page.screenshot({
+    path: `${evidence}/${id}-verified-lab.png`,
+    fullPage: true,
+  });
   // An explicit valid user selection changes only the Draft, invalidates proof, and can be undone.
   const regularToken =
     id === 'task-manager' ? 'primitive.weight.medium' : 'primitive.weight.body';
@@ -583,15 +662,60 @@ async function inspectProject(
     `[data-token="${regularToken}"] .field-control select`,
   );
   await regularField.focus();
-  await page.keyboard.press('End');
+  // Native keyboard selection must skip disabled aliases (700 can be disabled).
+  const alternate = weightAvailability(
+    profile,
+    capabilities,
+    beforeProbe,
+    regularToken,
+  ).verified.find((w) => w !== Number(originalWeight))!;
+  expect(alternate).toBeDefined();
+  await page.keyboard.press(
+    alternate < Number(originalWeight) ? 'Home' : 'End',
+  );
   await expect
     .poll(async () => (await getState()).state.draft.tokens[regularToken].value)
-    .toBe(700);
+    .toBe(alternate);
   await expect(page.locator('[data-typography-status]')).toHaveAttribute(
     'data-typography-status',
     'STALE',
   );
-  await expect(regularField.locator('option[value="400"]')).toBeDisabled();
+  for (const weight of profile.roles.find(
+    (r) => r.weightToken === regularToken,
+  )!.weights)
+    await expect(
+      regularField.locator(`option[value="${weight}"]`),
+    ).toBeDisabled();
+  const staleAttempt = await page.evaluate(async () => {
+    const modulePath = '/@id/__x00__virtual:wdf-project';
+    const { connection } = (await import(/* @vite-ignore */ modulePath))
+      .default;
+    const headers = {
+      'X-WDF-Session': connection.session,
+      'Content-Type': 'application/json',
+    };
+    const view = await (await fetch('/__wdf/state', { headers })).json();
+    return (
+      await fetch('/__wdf/change', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          version: '1.0.0',
+          projectId: connection.projectId,
+          session: connection.session,
+          requestId: crypto.randomUUID(),
+          expectedRevision: view.state.revision,
+          operation: {
+            type: 'approve',
+            confirmed: true,
+            runId: view.state.qa.id,
+            configurationDigest: view.context.configurationDigest,
+          },
+        }),
+      })
+    ).status;
+  });
+  expect(staleAttempt).toBe(409);
   const reviewToggle = page.getByRole('button', { name: /^Review/ });
   if ((await reviewToggle.getAttribute('aria-expanded')) === 'false')
     await reviewToggle.click();
@@ -600,6 +724,15 @@ async function inspectProject(
   await expect
     .poll(async () => (await getState()).state.draft.tokens[regularToken].value)
     .toBe(originalWeight);
+  // Undo restores the exact measured context in the same engine/session; no new proof is invented.
+  const restored = await getState();
+  expect(restored.state.draft).toEqual(beforeProbe);
+  expect(restored.context).toEqual(checked.context);
+  expect(restored.state.qa.id).toBe(checked.state.qa.id);
+  await expect(page.locator('[data-typography-status]')).toHaveAttribute(
+    'data-typography-status',
+    'PASS',
+  );
   report.errors.push(
     ...capabilities.errors,
     ...capabilities.roles.flatMap((r) =>
@@ -687,6 +820,24 @@ test('M6-R05: actual font capabilities, honest Lab options and mandatory approva
       encoding: 'utf8',
     }).trim(),
     version: '0.1.0-rc.1',
+    workingTree: execFileSync('git', ['status', '--short'], {
+      encoding: 'utf8',
+    }).trim(),
+    sourceSha256: Object.fromEntries(
+      await Promise.all(
+        [
+          'packages/qa/src/typography.ts',
+          'packages/ui-lab/src/Typography.tsx',
+          'packages/ui-lab/src/TokenField.tsx',
+          'package-lock.json',
+        ].map(async (path) => [
+          path,
+          createHash('sha256')
+            .update(await readFile(path))
+            .digest('hex'),
+        ]),
+      ),
+    ),
     harnessSha256: createHash('sha256')
       .update(await readFile('tests/m6/typography.spec.ts'))
       .digest('hex'),

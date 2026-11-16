@@ -101,3 +101,8 @@ ellenőrzőgombot kap; nincs új workspace vagy preview-geometriaváltozás. Csa
 aktuális közös QA-val igazolt súly választható. Az összeolvadó, nem ellenőrzött,
 elavult és megőrzött értékek szöveggel elkülönülnek, nem pusztán színnel.
 A projekt arculata és tokenadata változatlan; nincs automatikus font-/súlycsere.
+
+A súlyválasztó az igazolt CSS-súlyképviselőket nevezi meg. Azonos betűkép esetén
+lehetőség szerint a jelenlegi deklarált érték marad képviselő; az alternatív alias
+nem külön megjelenés. Ez nem külön natív fontmetszet vagy Semibold face ígérete.
+A számérték és a natív select tulajdonosa, színei és geometriája változatlan.

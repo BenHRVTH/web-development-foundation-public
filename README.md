@@ -1,4 +1,4 @@
-> TISZTA NYILVÁNOS ELŐKÉSZÍTÉS — Git-előzmény és régi artifact nélkül. A [közzétételi útmutató](docs/PUBLICATION.md) tartalmazza a biztonsági/licencelési feltételeket és a pontos lépéseket. Új Linux/Windows/M6 CI nem futott; az R05 ismert kiadásblokkoló marad. A történeti átadások nem az új repository tesztbizonyítékai.
+> TISZTA NYILVÁNOS ELŐKÉSZÍTÉS — Git-előzmény és régi artifact nélkül. A [közzétételi útmutató](docs/PUBLICATION.md) tartalmazza a biztonsági/licencelési feltételeket és a pontos lépéseket. Az eredeti nyilvános CI R05 FAIL-ját a helyi javítás nem írja át; friss Windows- és teljes M6-ellenőrzés még szükséges. A történeti átadások nem az új repository tesztbizonyítékai.
 
 # Web Development Foundation — 0.1.0-rc.1
 
@@ -12,12 +12,15 @@ A hiteles tokenforrást csak külön megerősített jóváhagyás írja át.
 GitHub Release vagy végleges tag.** Az aktuális teljesítés, bizonyítékok és nyitott
 korlátok az [M6 átadásban](docs/reports/M6-HANDOFF.md) találhatók.
 
-**Aktuális M6 QA: BLOKKOLT (R05 FAIL).** A valódi betűképes vizsgálat
-összeolvadó 600/700 súlyopciókat mutat a Task Manager egyes fontjaival.
-A projektszintű képességprofil és a kötelező `WDF-TYPE-001` már csak ténylegesen
-igazolt, különböző súlyopciókat enged a Labban. A meglévő értékeket nem írja át.
-[Aktualizált tipográfiai átadás és eredmények](docs/reports/M6-TYPOGRAPHY-HANDOFF.md).
-A [korábbi sikertelen mérések](docs/reports/M6-R05-CORRECTION.md) megmaradtak.
+**M6 kiadás: BLOKKOLT; az R05 javítása helyi felülvizsgálaton.** A jóváhagyott
+szabály az aktuális deklarált CSS-súlyképviselőt részesíti előnyben. Az összeolvadó
+600/700 nem két választható megjelenés; minden eredeti súlypár mérése megmarad.
+A rendszerfontok, arculatok és meglévő tokenértékek változatlanok.
+[Új helyi átadás, eredmények és Windows-korlát](docs/reports/M6-R05-FINALIZATION.md).
+A [korábbi sikertelen mérések](docs/reports/M6-R05-CORRECTION.md) és az
+[eredeti nyilvános CI FAIL-bizonyítéka](docs/reports/M6-R05-HISTORY.md)
+megmaradtak. A teljes Linux/Windows-kapu és a kötelező kézi hiányok lezárása még
+szükséges; nincs release-jóváhagyás.
 
 ## Indítás a referenciaprojekttel
 

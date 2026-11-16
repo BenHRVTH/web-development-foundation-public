@@ -30,9 +30,13 @@ hogy a helyi fontnak van külön face-e minden felkínált súlyhoz. A computed 
 különbséghez azonos betűkép is tartozhat. Az R05 az alkalmazás saját szerepeit,
 betöltött fontjait, valós Lab-tokenmódosítását és tényleges glyph-pixeleit vizsgálja;
 a monospace azonos advance-szélessége önmagában nem hiba.
-A jelenlegi Task Manager súlyütközése kiadásblokkoló: [R05 eredmény](reports/M6-R05-CORRECTION.md).
-A forrásfont/arculat cseréje vagy az opciószerződés pontosítása külön szakmai döntés;
-nem írjuk át a Foundationt, és nem minősítjük az összeolvadt opciót PASS-nak.
+A [korábbi sikertelen súlypárok](reports/M6-R05-CORRECTION.md) változatlanul
+hibabizonyítékok. A jóváhagyott képviselőszabály az aktuális, deklarált CSS-súlyt
+részesíti előnyben: összeolvadó 600/700 esetén a jelenlegi 600 maradhat, 700 külön
+opcióként kiesik. A pár FAIL marad. Ez egy megjelenés CSS-képviselőjének igazolása,
+nem külön natív fontmetszet ígérete. A küszöbök, minden jelöltpár, a Foundation és
+az alkalmazások tokenértékei változatlanok. Az új helyi ellenőrzések és a még
+hiányzó Windows-/teljes kapu státusza: [R05 véglegesítési átadás](reports/M6-R05-FINALIZATION.md).
 
 ### ADR-0011: projektprofil és igazolt súlyválasztás
 
@@ -51,7 +55,9 @@ súlyokat engedi választani. Az összeolvadó jelöltek mérései megmaradnak, 
 nem igazolt aktuális érték nincs automatikusan átírva. A FAIL összesítésből is
 felhasználhatók az igazolt javítási opciók; ez nem jelent jóváhagyhatóságot.
 
-Új Draft-szerkesztés után a bizonyíték elavult, új QA szükséges. Lab-restart után
+Eltérő Drafthoz a bizonyíték elavult, aktuális QA szükséges. Undo a pontosan
+azonos mért Draft/forrás/engine/fontmunkamenet visszaállításával az eredeti QA-t
+ismét használhatóvá teheti; más kontextushoz nem ad felmentést. Lab-restart után
 rendszerfontokra új mérés kell, a mentett Draft/history változatlan. Fonttelepítés
 vagy OS-fontfrissítés után indítsd újra a Labot. A WDF nem figyeli az operációs
 rendszer valamennyi fontfájlját. Profilhiány esetén a projekt javításra megnyitható,

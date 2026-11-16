@@ -1,17 +1,19 @@
-> Tiszta nyilvános snapshot: a friss közzétételi és CI-határokat a [PUBLICATION.md](PUBLICATION.md) írja le. A történeti mérési eredmények a privát archívumban maradnak; az új export teljes M6-/Windows-kapuja NOT_RUN, az R05 ismert blokkoló.
+> Tiszta nyilvános snapshot: a friss közzétételi és CI-határokat a [PUBLICATION.md](PUBLICATION.md) írja le. A történeti mérési eredmények a privát archívumban maradnak; a jelenlegi helyi javítás teljes M6-/Windows-kapuja NOT_RUN.
 
 # WDF Release Guide — 0.1.0-rc.1
 
 **Kizárólag release candidate; nincs registry-publikálás, GitHub Release vagy végleges tag.**
 A teljes aktuális readiness és az esetleges blokkolók: [M6-HANDOFF](reports/M6-HANDOFF.md).
 
-**Nyitott kiadásblokkoló: R05.** Az aktuális modell, pontos commitonkénti
-Linux/Windows eredmények és nyitott hibák a
-[tipográfiai átadásban](reports/M6-TYPOGRAPHY-HANDOFF.md) szerepelnek.
-A Lab nem kínál összeolvadó súlyokat két igazolt opcióként; a megőrzött 600-as
-értékek ettől még nem kapnak alapállapoti R05 PASS-t. A hét kötelező Approval-check
-része a `WDF-TYPE-001`; régi hatcheckes QA nem jogosít új jóváhagyásra.
-A [korábbi sikertelen mérések](reports/M6-R05-CORRECTION.md) történetileg megmaradnak.
+**Kiadás blokkolt, R05-javítás helyi felülvizsgálaton.** A jóváhagyott új
+képviselőszabály a meglévő deklarált súlyt tarthatja meg egy összeolvadó csoportból,
+alkalmazás-/tokenmódosítás nélkül. A nyers pár-FAIL nem válik PASS-szá.
+Aktuális helyi eredmények, forráslenyomatok és friss Windows NOT_RUN:
+[R05 véglegesítési átadás](reports/M6-R05-FINALIZATION.md).
+A hét kötelező Approval-check része a `WDF-TYPE-001`; régi hatcheckes,
+célzott vagy elavult QA nem jogosít új jóváhagyásra. A teljes Linux/Windows M6-
+kapu és a megmaradt kézi hiányok lezárása még szükséges. A
+[korábbi sikertelen mérések](reports/M6-R05-CORRECTION.md) történetileg megmaradnak.
 
 ## Előállítás és telepítési próba
 
